@@ -36,6 +36,8 @@ body {
 }
 #notes {
   float: right;
+  margin-right: 50px;
+  /* display: block; */
   width: 30%;
   position: relative;
 }
