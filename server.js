@@ -68,6 +68,9 @@ app.get("/scrape", function(req, res) {
   });
 });
 
+
+
+
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   // Grab every document in the Articles collection
@@ -115,8 +118,29 @@ app.post("/articles/:id", function(req, res) {
     .catch(function(err) {
       // If an error occurred, send it to the client
       res.json(err);
-    });
+    });    
 });
+
+app.post('/remove/comment/:id', function (req, res){
+
+ // Collect comment id
+ var commentId = req.params.id;
+
+ // Find and Delete the Comment using the Id
+ Comment.findByIdAndRemove(commentId, function (err, todo) {  
+   
+   if (err) {
+     console.log(err);
+   }
+   else {
+     // Send Success Header
+     res.sendStatus(200);
+   }
+
+ });
+
+});
+
 
 // Start the server
 app.listen(PORT, function() {

@@ -29,6 +29,9 @@ $.getJSON("/articles", function(data) {
         $("#notes").append("<input id='titleinput' name='title' >");
         // A textarea to add a new note body
         $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+        $("#notes").append("<form id=form-delete-"+data._id +" action='remove/comment/'+ "+data._id +"method='post'>"+
+        "<input class='btn-small delete-comment-button' data-id='"+data._id+"' type='submit' value='Delete' style='color: white; background-color: red; border-color: red;'></form>");
+        
         // A button to submit a new note, with the id of the article saved to it
         $("#notes").append("<button class='btn btn-info' data-id='" + data._id + "' id='savenote'>Save Note</button>");
   
@@ -38,6 +41,8 @@ $.getJSON("/articles", function(data) {
           $("#titleinput").val(data.note.title);
           // Place the body of the note in the body textarea
           $("#bodyinput").val(data.note.body);
+          // $("#results").prepend("<p class='data-entry' data-id=" + data._id + "><span class='dataTitle' data-id=" +
+          // data._id + ">" + data.title + "</span><span class=delete>X</span></p>");
         }
       });
   });
@@ -70,3 +75,27 @@ $.getJSON("/articles", function(data) {
     $("#titleinput").val("");
     $("#bodyinput").val("");
   });
+
+// Click Listener for FORM SUBMISSION to DELETE a comment
+ $('.delete-comment-button').on('click', function(){
+
+   // Get _id of comment to be deleted
+   var commentId = $(this).data("id");
+
+   // URL root (so it works in eith Local Host for Heroku)
+   var baseURL = window.location.origin;
+
+   // AJAX Call to delete Comment
+   $.ajax({
+     url: baseURL + '/remove/comment/' + commentId,
+     type: 'POST',
+   })
+   .done(function() {
+     // Refresh the Window after the call is done
+     location.reload();
+   });
+   
+   // Prevent Default
+   return false;
+
+ });
