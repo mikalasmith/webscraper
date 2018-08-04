@@ -29,8 +29,12 @@ $.getJSON("/articles", function(data) {
         $("#notes").append("<input id='titleinput' name='title' >");
         // A textarea to add a new note body
         $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-        $("#notes").append("<form id=form-delete-"+data._id +" action='remove/comment/'+ "+data._id +"method='post'>"+
-        "<input class='btn-small delete-comment-button' data-id='"+data._id+"' type='submit' value='Delete' style='color: white; background-color: red; border-color: red;'></form>");
+        // $("#notes").append("<form id=" + "'" + "form-delete-" +data._id + "'" 
+        // + " action='remove/comment/" + data._id + "'" + " " + "method='post'>" +
+        // "<input class='btn-small delete-comment-button' data-id='"+data._id+"' type='submit' value='Delete' style='color: white; background-color: red; border-color: red;'></form>");
+
+        $("#notes").append("<form id=" + "'" + "form-delete-" +data._id + "'>" +
+        "<input class='btn-small delete-comment-button' data-id='"+data._id+"' type='submit' value='Delete' style='color: white; background-color: red; border-color: red;'></form>")
         
         // A button to submit a new note, with the id of the article saved to it
         $("#notes").append("<button class='btn btn-info' data-id='" + data._id + "' id='savenote'>Save Note</button>");
@@ -77,10 +81,12 @@ $.getJSON("/articles", function(data) {
   });
 
 // Click Listener for FORM SUBMISSION to DELETE a comment
- $('.delete-comment-button').on('click', function(){
-
+// document.on click
+ $(document).on('click','.delete-comment-button',function(event){
+   event.preventDefault();
    // Get _id of comment to be deleted
    var commentId = $(this).data("id");
+   console.log(commentId);
 
    // URL root (so it works in eith Local Host for Heroku)
    var baseURL = window.location.origin;

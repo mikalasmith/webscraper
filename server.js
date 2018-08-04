@@ -122,12 +122,12 @@ app.post("/articles/:id", function(req, res) {
 });
 
 app.post('/remove/comment/:id', function (req, res){
-
+console.log(req.params.id);
  // Collect comment id
  var commentId = req.params.id;
 
  // Find and Delete the Comment using the Id
- Comment.findByIdAndRemove(commentId, function (err, todo) {  
+ db.Note.findByIdAndRemove(commentId, function (err, todo) {  
    
    if (err) {
      console.log(err);
