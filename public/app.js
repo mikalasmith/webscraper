@@ -34,7 +34,7 @@ $.getJSON("/articles", function(data) {
         // "<input class='btn-small delete-comment-button' data-id='"+data._id+"' type='submit' value='Delete' style='color: white; background-color: red; border-color: red;'></form>");
 
         $("#notes").append("<form id=" + "'" + "form-delete-" +data._id + "'>" +
-        "<input class='btn-small delete-comment-button' data-id='"+data._id+"' type='submit' value='Delete' style='color: white; background-color: red; border-color: red;'></form>")
+        "<input class='btn-small delete-comment-button btn-danger' data-id='"+data._id+"' type='submit' value='Delete' style='color: white; background-color: red; border-color: red;'></form>")
         
         // A button to submit a new note, with the id of the article saved to it
         $("#notes").append("<button class='btn btn-info' data-id='" + data._id + "' id='savenote'>Save Note</button>");
