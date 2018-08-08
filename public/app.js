@@ -99,7 +99,7 @@ $.getJSON("/articles", function(data) {
    .done(function() {
      // Refresh the Window after the call is done
      location.reload();
-   });
+   }).catch(err=> console.log(err));
    
    // Prevent Default
    return false;

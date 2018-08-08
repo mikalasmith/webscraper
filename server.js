@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/week18Populater");
+mongoose.connect("mongodb://user1:mikala1@ds115022.mlab.com:15022/week18populater");
 
 // Routes
 
@@ -133,6 +133,7 @@ console.log(req.params.id);
      console.log(err);
    }
    else {
+     console.log("success!");
      // Send Success Header
      res.sendStatus(200);
    }
