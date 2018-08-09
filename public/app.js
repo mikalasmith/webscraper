@@ -85,7 +85,7 @@ $.getJSON("/articles", function(data) {
  $(document).on('click','.delete-comment-button',function(event){
    event.preventDefault();
    // Get _id of comment to be deleted
-   var commentId = $(this).data("id");
+   var commentId = $(this).attr("data-id");
    console.log(commentId);
 
    // URL root (so it works in eith Local Host for Heroku)
