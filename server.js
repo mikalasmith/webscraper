@@ -27,7 +27,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://user1:mikala1@ds115022.mlab.com:15022/week18populater");
+//mongoose.connect("mongodb://user1:mikala1@ds115022.mlab.com:15022/week18populater");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user1:mikala1@ds115022.mlab.com:15022/week18populater";
+
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect( MONGODB_URI, {
+
+  useMongoClient: true
+
+});
+
 
 // Routes
 
